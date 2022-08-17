@@ -25,7 +25,7 @@ async function newRegister(data){
         to: ADMIN_MAIL,
         subject: 'Nuevo Registro',
         html:`
-            <h1>Nuevo usuario registrado</h1>
+            <h3>Nuevo usuario registrado</h3>
             <div>
                 <p>Nombre: <span style="font-weight: bold;">${data.firstName}</span></p>
                 <p>Apellido: <span style="font-weight: bold;">${data.lastName}</span></p>
@@ -62,9 +62,9 @@ async function newOrder(user, data){
         to: [ADMIN_MAIL, user.email],
         subject: 'Nuevo Pedido',
         html:`
-            <h1>Nuevo pedido de compra de: </h1>
-            <h2><span style="font-weight: bold;">${user.firstName} ${user.lastName}</span> - 
-            <span style="font-weight: bold;">${user.email}</span></h2>
+            <h2>Nuevo pedido de compra de: </h2>
+            <h3><span style="font-weight: bold;">${user.firstName} ${user.lastName}</span> - 
+            <span style="font-weight: bold;">${user.email}</span></h3>
             <br>
             <table>
                 <thead>

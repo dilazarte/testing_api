@@ -1,15 +1,10 @@
 const { FakerError } = require('@faker-js/faker');
-const express = require('express')
+const express = require('express');
 const {Router} = express
+const { getInicio } = require('../controllers/viewsController');
 
 const inicioRouter = Router()
 
-inicioRouter.get('/', (req, res)=>{
-    if(req.isAuthenticated()){
-        res.status(200).redirect('admin')
-    }else{
-        res.status(200).render('main')
-    }
-})
+inicioRouter.get('/', getInicio)
 
 module.exports = inicioRouter

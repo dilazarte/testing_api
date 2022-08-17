@@ -1,25 +1,11 @@
 const express = require('express')
+const { getLogout } = require('../controllers/viewsController')
 const {Router} = express
 const {loggerError} = require('../utils/loggers')
 
 const logoutRouter = Router()
 
-logoutRouter.get('/', (req, res)=>{
-    // let name = req.user
-    // req.logout(err =>{
-    //     if(err){ loggerError.error(`Error al cerrar sesion: ${err}`) }
-    // })
-    // res.render('logout', {name: name.firstName, lastName: name.lastName})
-    if (req.isAuthenticated()) {
-        let name = req.user;
-        req.logout(err =>{
-            if(err){ loggerError.error(`Error al cerrar sesion: ${err}`) }
-        })
-        res.render('logout', {name: name.firstName, lastName: name.lastName, logout: true})
-    } else {
-        res.render('logout')
-    }
-})
+logoutRouter.get('/', getLogout)
 
 
 module.exports= logoutRouter

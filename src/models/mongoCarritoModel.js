@@ -9,4 +9,4 @@ const CarritosSchema = new mongoose.Schema({
 
 const carritos = mongoose.model(carritosCollection, CarritosSchema);
 
-module.exports = {carritos}
+module.exports = carritos

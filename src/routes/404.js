@@ -1,13 +1,9 @@
 const express = require('express')
-const { loggerError } = require('../utils/loggers')
 const {Router} = express
-
+const {notFoundPage} = require('../controllers/viewsController')
 
 const notFound = Router()
 
-notFound.get('/', (req, res)=>{
-    res.render('404')
-    loggerError.error(`Pagina no encontrada ${req.baseUrl}`)
-})
+notFound.get('/', notFoundPage)
 
 module.exports= notFound

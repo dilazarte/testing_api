@@ -1,12 +1,8 @@
-const {DaoCarritoMongo} = require('../DAOs/DaosMongoCarrito');
-const {carritos} = require('../models/mongoCarritoModel');
-const daoCarts = new DaoCarritoMongo()
+const { createCart } = require("../services/cartServices");
 
 async function cartID() {
-    const data = await daoCarts.createCart()
-    const id = data._id
-    return id;
-    
+    const data = await createCart()
+    return data._id;
 }
 
 module.exports = {cartID}

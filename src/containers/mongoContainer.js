@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const {loggerInfo, loggerDebug, loggerError} = require('../utils/loggers')
+const SingletonDB = require('./singletonDB');
 require('dotenv').config();
 
 const URL = process.env.MONGO_URI;
@@ -7,21 +6,14 @@ const URL = process.env.MONGO_URI;
 
 class ContenedorMongoDB {
     constructor(model){
-        mongoose.connect(URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }, ()=> loggerInfo.info('Connected to db'));
+        this.connection = new SingletonDB(URL)
         this.model = model
     }
 
     async getDoc(data){
         try {
             const item = await this.model.findOne(data)
-            if(item.length > 0){
-                return item
-            } else{
-                return '[]'
-            }
+            return item
         } catch (error) {
             return error
         }
@@ -29,12 +21,8 @@ class ContenedorMongoDB {
     
     async getDocById(id){
         try {
-            const item = await this.model.find({'_id': id }).select('-__v')
-            if(item.length > 0){
-                return item
-            } else{
-                return '[]'
-            }
+            const item = await this.model.findOne({_id: id})
+            return item
         } catch (error) {
             return error
         }
@@ -42,12 +30,8 @@ class ContenedorMongoDB {
 
     async getAllDoc(){
         try {
-            const items = await this.model.find({}).select('-__v')
-            if(items.length > 0){
-                return items;
-            } else{
-                return `Error: no se encontraron documentos`
-            }
+            const items = await this.model.find({})
+            return items;
         } catch (error) {
             return error
         }
@@ -82,4 +66,4 @@ class ContenedorMongoDB {
     }
 }
 
-module.exports = {ContenedorMongoDB}
+module.exports = ContenedorMongoDB

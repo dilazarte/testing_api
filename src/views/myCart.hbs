@@ -50,6 +50,7 @@
             .then(res => res.json())
             .then(res => {
                 const data = res.map(el => {
+                    console.log(el)
                     return(
                         `
                             <tr>

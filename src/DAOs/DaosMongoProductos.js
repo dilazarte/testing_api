@@ -1,4 +1,4 @@
-const {ContenedorMongoDB} = require('../containers/mongoContainer')
+const ContenedorMongoDB = require('../containers/mongoContainer')
 const productoModel = require('../models/mongoProductosModel')
 
 class DaoProductosMongo extends ContenedorMongoDB{
@@ -7,4 +7,4 @@ class DaoProductosMongo extends ContenedorMongoDB{
     }
 }
 
-module.exports = {DaoProductosMongo};
+module.exports = DaoProductosMongo;

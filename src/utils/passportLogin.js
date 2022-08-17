@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const {usuarios} = require('../models/mongoUsuariosModel');
+const usuarios = require('../models/mongoUsuariosModel');
 const { encryptPass } = require('../utils/encryptPassword');
 const { validatePass } = require('../utils/validatePassword')
 const { cartID } = require('../utils/createIdCart')
@@ -48,7 +48,7 @@ passport.use('signup', new LocalStrategy(
                 password: encryptPass(password),
                 address: req.body.address,
                 age: req.body.age,
-                phone: `+54${req.body.phone}`,
+                phone: req.body.phone,
                 avatar: req.file.filename,
                 cartRef: idCart
             }

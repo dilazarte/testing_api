@@ -6,10 +6,9 @@ const client = require('twilio')(accountSid, authToken);
 
 function sendWhatsapp(user, data){
     const msg = data.map(el => {
-        return(
-            `
-                ✅ *${el.descripcion}*: precio: *${el.precio}*
-            `
+        return(`
+        ✅ *${el.descripcion}* - precio: *$${el.precio}*
+        `
         )
     }).join('')
     client.messages
