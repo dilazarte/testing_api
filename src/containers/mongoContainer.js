@@ -21,9 +21,10 @@ class ContenedorMongoDB {
     
     async getDocById(id){
         try {
-            const item = await this.model.findOne({_id: id})
+            const item = await this.model.findOne( {_id: id} )
             return item
         } catch (error) {
+            console.log('error', error)
             return error
         }
     }
@@ -41,7 +42,7 @@ class ContenedorMongoDB {
         try {
             obj.timeStamp = Date.now()
             const newItem = await this.model.create(obj);
-            return newItem._id;
+            return newItem;
         } catch (error) {
             return error
         }

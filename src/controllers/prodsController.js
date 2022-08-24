@@ -5,7 +5,11 @@ async function getProducts(req, res){
     const id = req.params.id;
     if(id){
         const data = await getProdById(id);
-        res.status(200).json(data);
+        if(data){
+            res.status(200).json(data);
+        }else{
+            res.status(404).json({error: `Producto con _id: ${id} no encontrado.`});
+        }
     } else {
         const data = await getProds();
         res.status(200).json(data);
